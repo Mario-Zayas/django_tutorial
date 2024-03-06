@@ -1,9 +1,9 @@
 FROM python:3
 WORKDIR /usr/src/app
-RUN git clone https://github.com/Mario-Zayas/django_tutorial.git ./
+RUN git clone hwttps://github.com/Mario-Zayas/django_tutorial.git ./
 RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir static
-COPY *docker-entrypoint.sh ./
+COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 ENV ALLOWED_HOSTS=*
 ENV HOST=mariadb
