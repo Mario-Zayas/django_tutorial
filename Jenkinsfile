@@ -25,7 +25,7 @@ pipeline {
                 } 
             }
         }
-        stage('Upload img') {
+        stage('Subir imagen') {
             agent any
             stages {
                 stage('Build and push') {
@@ -38,7 +38,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Remove image') {
+                stage('Quitar la imagen') {
                     steps {
                         script {
                             sh "docker rmi mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}"
