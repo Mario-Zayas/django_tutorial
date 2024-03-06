@@ -32,7 +32,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry([credentialsId: 'DOCKER_HUB', url: '']) {
-                            def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}")
+                            def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:latest")
                             dockerImage.push()
                             }
                         }
@@ -41,7 +41,7 @@ pipeline {
                 stage('Quitar la imagen') {
                     steps {
                         script {
-                            sh "docker rmi mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}"
+                            sh "docker rmi mzaygar034/django_tutorial_jenkins:latest"
                         }
                     }
                 }
@@ -51,13 +51,9 @@ pipeline {
             agent any
             steps {
                 script {
-                    String tagRemove = env.BUILD_ID.toInteger() - 1
                     sshagent(credentials: ['CLAVE_SSH']) {
-                        sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker-compose down"
-                        sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker rmi mzaygar034/django_tutorial_jenkins:${tagRemove}"
-                        sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker pull mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}"
                         sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es wget https://raw.githubusercontent.com/Mario-Zayas/django_tutorial/master/docker-compose.yaml -O docker-compose.yaml"
-                        sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es DJANGO_VERSION=${env.BUILD_ID} docker-compose up -d --force-recreate"
+                        sh "ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker-compose up -d --force-recreate"
                     }
                 }
             }
