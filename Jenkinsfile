@@ -15,7 +15,7 @@ pipeline {
                 }
                 stage('Install') {
                     steps {
-                        sh 'pip install -r requirements.txt'
+                        sh 'pip install --root-user-action=ignore -r requirements.txt'
                     }
                 }
                 stage('Test') {
