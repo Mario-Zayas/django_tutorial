@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       ALLOWED_HOSTS: "*"
-      HOST: mariadb_jenkins
+      HOST: mariadb
       USUARIO: django
       CONTRA: django
       BASE_DATOS: django
@@ -18,7 +18,7 @@ services:
     depends_on:
       - mariadb
   mariadb:
-    container_name: mariadb_jenkins
+    container_name: mariadb
     image: mariadb
     restart: always
     environment:
@@ -27,6 +27,6 @@ services:
       MARIADB_USER: django
       MARIADB_PASSWORD: django
     volumes:
-      - mariadb_jenkins:/var/lib/mysql
+      - mariadb:/var/lib/mysql
 volumes:
-    mariadb_jenkins:
+    mariadb:
