@@ -21,6 +21,10 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'python3 manage.py test'
+		}
+                stage('Cambiar de setting') {
+                    steps {
+                        sh 'cp applicacion.py settings.py'
                     }
                 } 
             }
