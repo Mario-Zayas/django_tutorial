@@ -41,7 +41,7 @@ pipeline {
                             steps {
                                 script {
                                     withDockerRegistry(credentialsId: 'DOCKER_HUB', url: '') {
-                                        def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:55")
+                                        def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:56")
                                         dockerImage.push()
                                     }
                                 }
@@ -50,7 +50,7 @@ pipeline {
                         stage('Quitar la imagen') {
                             steps {
                                 script {
-                                    sh "docker rmi mzaygar034/django_tutorial_jenkins:55"
+                                    sh "docker rmi mzaygar034/django_tutorial_jenkins:56"
                                 }
                             }
                         }
