@@ -25,7 +25,7 @@ pipeline {
 		}
                 stage('Cambiar de setting') {
                     steps {
-                        sh 'cp applicacion.py settings.py'
+                        sh 'cp django_tutorial/applicacion.py django_tutorial/settings.py'
                     }
                 } 
             }
