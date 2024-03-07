@@ -21,6 +21,7 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'python3 manage.py test'
+		    }
 		}
                 stage('Cambiar de setting') {
                     steps {
@@ -70,4 +71,3 @@ pipeline {
             body: "${env.BUILD_URL} has result ${currentBuild.result}"
         }
     }
-}
