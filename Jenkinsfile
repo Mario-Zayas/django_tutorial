@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        stage('Testing django') {
+        stage('Testing') {
             agent {
                 docker {
                     image 'python:3'
@@ -41,7 +41,7 @@ pipeline {
                             steps {
                                 script {
                                     withDockerRegistry(credentialsId: 'DOCKER_HUB', url: '') {
-                                        def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:latest")
+                                        def dockerImage = docker.build("mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}")
                                         dockerImage.push()
                                     }
                                 }
@@ -50,7 +50,7 @@ pipeline {
                         stage('Quitar la imagen') {
                             steps {
                                 script {
-                                    sh "docker rmi mzaygar034/django_tutorial_jenkins:latest"
+                                    sh "docker rmi mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}"
                                 }
                             }
                         }
