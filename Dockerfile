@@ -1,7 +1,7 @@
 FROM python:3
 WORKDIR /usr/src/app
-RUN pip install --root-user-action=ignore --upgrade pip && pip install --root-user-action=ignore django mysqlclient
 COPY django_tutorial ./
+RUN pip install --root-user-action=ignore --upgrade pip && pip install --root-user-action=ignore django mysqlclient
 RUN mkdir static
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
