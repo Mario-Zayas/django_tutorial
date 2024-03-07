@@ -30,7 +30,7 @@ pipeline {
             stages {
                 stage('CloneAnfitrion') {
                     steps {
-                        git branch:'main',url:'https://github.com/Mario-Zayas/django_tutorial.git'
+                        git branch:'master',url:'https://github.com/Mario-Zayas/django_tutorial.git'
                     }
                 }
             }
