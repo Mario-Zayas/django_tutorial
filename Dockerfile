@@ -1,7 +1,8 @@
 FROM python:3
 WORKDIR /usr/src/app
 RUN pip install --root-user-action=ignore --upgrade pip && pip install --root-user-action=ignore django mysqlclient
-COPY . /usr/local
+COPY . /usr/src/app
+COPY /usr/src/app/settings.back /usr/src/app/settings.py
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 ENV ALLOWED_HOSTS=*
