@@ -23,11 +23,6 @@ pipeline {
                         sh 'python3 manage.py test'
 		    }
 		}
-                stage('Cambiar de setting') {
-                    steps {
-                        sh 'cp django_tutorial/applicacion.py django_tutorial/settings.py'
-                    }
-                } 
             }
         }
         stage('Subir imagen') {
