@@ -54,7 +54,7 @@ pipeline {
                     steps{
                         sshagent(credentials : ['CLAVE_SSH']) {
 			    sh 'ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es rm docker-compose.yaml'
-			    sh 'ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker rmi -f mzaygar034/django_tutorial_jenkins:${env.BUILD_ID}'
+			    sh 'ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker rmi -f mzaygar034/django_tutorial_jenkins:56'
                             sh 'ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es wget https://raw.githubusercontent.com/Mario-Zayas/django_tutorial/master/docker-compose.yaml -O docker-compose.yaml'
                             sh 'ssh -o StrictHostKeyChecking=no mario@maquinanodriza.mzgmaquina.es docker compose up -d --force-recreate'
                         }
