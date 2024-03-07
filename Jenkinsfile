@@ -25,8 +25,18 @@ pipeline {
 		}
             }
         }
-        stage('Subir imagen') {
+        stage("Construccion") {
             agent any
+            stages {
+                stage('CloneAnfitrion') {
+                    steps {
+                        git branch:'main',url:'https://github.com/Mario-Zayas/django_tutorial.git'
+                    }
+                }
+            }
+	}
+	stage('Subir imagen') {
+	    agent any
             stages {
                 stage('Build and push') {
                     steps {
